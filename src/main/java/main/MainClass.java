@@ -8,8 +8,6 @@ public class MainClass {
 		System.out.println("helloo");
 		System.out.println("helloo");
 		System.out.println("helloo");
-		System.out.println("helloo");
-		System.out.println("helloo");
 	}
 
 }
