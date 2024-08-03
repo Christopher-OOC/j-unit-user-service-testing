@@ -11,8 +11,14 @@ public class UserServiceTests {
 	void testCreateUser_whenUserDetailsProvided_returnsUserObject() {
 		// Arrange
 		UserService userService = new UserServiceImpl();
+		String firstName = "Christopher";
+		String lastName = "Olojede";
+		String email = "test@test.com";
+		String password = "12345678";
+		String repeatPassword = "12345678";
 		
 		//Act
+		userService.createUser(firstName, lastName, email, password, repeatPassword);
 		
 		//Assert 
 	}
