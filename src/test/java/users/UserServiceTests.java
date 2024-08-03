@@ -59,7 +59,6 @@ public class UserServiceTests {
 		 }, () -> "Empty first name should have caused an Illegal Argument Exception");
 	
 		 assertEquals(expectedExceptionMessage, thrown.getMessage());
-	
 	}
 
 }
