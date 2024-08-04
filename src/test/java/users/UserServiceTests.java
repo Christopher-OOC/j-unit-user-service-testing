@@ -9,16 +9,24 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import main.User;
+import main.UserRepository;
 import main.UserService;
 import main.UserServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTests {
 	
-	UserService userService;
+	@InjectMocks
+	UserServiceImpl userService;
+	
+	@Mock
+	UserRepository userRepository;
+	
 	String firstName;
 	String lastName;
 	String email;
@@ -28,7 +36,6 @@ public class UserServiceTests {
 	@BeforeEach
 	void init() {
 		
-		userService = new UserServiceImpl();
 		firstName = "Christopher";
 		lastName = "Olojede";
 		email = "test@test.com";

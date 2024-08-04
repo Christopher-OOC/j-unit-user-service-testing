@@ -12,7 +12,7 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		boolean returnValue = false;
 		
-		if (users.containsKey(user.getId())) {
+		if (!users.containsKey(user.getId())) {
 			 users.put(user.getId(), user);
 			 returnValue = true;
 		}
