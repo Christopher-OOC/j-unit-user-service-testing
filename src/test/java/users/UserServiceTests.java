@@ -7,15 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import main.User;
 import main.UserRepository;
-import main.UserService;
 import main.UserServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -46,6 +45,8 @@ public class UserServiceTests {
 	
 	@Test
 	void testCreateUser_whenUserDetailsProvided_returnsUserObject() {
+		// Arrange
+		when(userRepository.save(any(User.class))).thenReturn(true);
 		
 		//Act
 		User user = userService.createUser(firstName, lastName, email, password, repeatPassword);
@@ -56,6 +57,7 @@ public class UserServiceTests {
 		assertEquals(lastName, user.getLastName(), () -> "Last Name not the same");
 		assertEquals(email, user.getEmail(), () -> "Email not the same");
 		assertNotNull(user.getId());
+		verify(userRepository, times(1)).save(any(User.class));
 	}
 	
 	@DisplayName("Empty first name causes correct exception")
