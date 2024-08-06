@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import main.User;
 import main.UserRepository;
+import main.UserServiceException;
 import main.UserServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -72,6 +73,20 @@ public class UserServiceTests {
 		 }, () -> "Empty first name should have caused an Illegal Argument Exception");
 	
 		 assertEquals(expectedExceptionMessage, thrown.getMessage());
+	}
+	
+	
+	@Test
+	void testCreateUser_whenSaveMethodThrowsException_thenThrowsUserServiceException() {
+		//Arrange
+		when(userRepository.save(any(User.class))).thenThrow(RuntimeException.class);
+		//Act
+		
+		assertThrows(UserServiceException.class, () -> {
+			userService.createUser(firstName, lastName, email, password, repeatPassword);
+		}, () -> "Should have thrown UserServiceException instead");
+		
+		//Assert
 	}
 
 }
